@@ -1,0 +1,7 @@
+- name: Respuesta a Incidentes
+  hosts: all
+  become: true
+  tasks:
+    - name: Bloquear una IP sospechosa
+      command: "iptables -A INPUT -s 192.168.1.100 -j DROP"
+      when: "'192.168.1.100' in lookup('env', 'THREAT_IP')"

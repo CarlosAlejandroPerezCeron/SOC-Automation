@@ -1,0 +1,14 @@
+- name: Threat Hunting Playbook
+  hosts: all
+  become: true
+  tasks:
+    - name: Escanear archivos sospechosos con YARA
+      command: "yara -r /var/logs/"
+    - name: Enviar resultados a Elasticsearch
+      uri:
+        url: "http://localhost:9200/threat-hunting-logs/_doc/"
+        method: POST
+        body: "{{ lookup('file', '/tmp/yara_results.txt') }}"
+        headers:
+          Content-Type: "application/json"
+        status_code: 200,201

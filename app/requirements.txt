@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+elasticsearch
+structlog
+ansible
+paramiko
+python-dotenv
+pyotp
+passlib
+bcrypt
+python-jose[cryptography]
+pytest
+ansible-runner
